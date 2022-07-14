@@ -9,6 +9,9 @@ export function Post({author, content, publishedAt }) {
   const [comments, setComments] = useState([])
   const [newComment, setNewComment] = useState('')
 
+  const isNewCommentEmpty = newComment === ''
+  const titleButton = isNewCommentEmpty ? 'Digite o seu comentário!' : ''
+
   const dataTitle = format(publishedAt, "d 'de' MMMM 'às' H'h'",
     {
       locale: ptBr,
@@ -69,7 +72,11 @@ export function Post({author, content, publishedAt }) {
         />
 
         <footer>
-          <button type="submit">Comentar</button>
+          <button
+            type="submit"
+            disabled={isNewCommentEmpty}
+            title={titleButton}
+          >Comentar</button>
         </footer>
       </form>
 
